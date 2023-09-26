@@ -51,6 +51,7 @@ void setup() {
 }
 
 void loop() {
+  int dash_ms = 100;
   int i = 0;
   int index = 0;
   int mask = 0;
@@ -69,7 +70,7 @@ void loop() {
       // delay between words
 
       if (last_c && last_c == ' ' && *ptr != ' ') {
-        delay(700);
+        delay(7*dash_ms);
       }
       last_c = i;
       if (i >= 97) {
@@ -84,16 +85,19 @@ void loop() {
         mask = 1 << (4 - n);
         digitalWrite(LED_BUILTIN, HIGH);
         if (code[index].bits & mask) {
-          delay(300);
+          delay(3*dash_ms);
         } else {
-          delay(100);
+          delay(dash_ms);
         }
         digitalWrite(LED_BUILTIN, LOW);
+        delay(dash_ms);
       }
 
       // Delay between letters
 
-      delay(300);
+      delay(2*dash_ms);
     }
+
   }
+  delay(1000);
 }
